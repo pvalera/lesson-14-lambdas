@@ -13,16 +13,16 @@ import org.junit.jupiter.api.Test;
 class _2_PracticeWritingLambdas {
 	
 	/* Assign lambda expressions to each of the functions below, so that the tests pass. */
-
+	
 	Function<Integer, Integer> squareLambda = x -> x * x;
-	Function<Integer, Integer> INCREMENT_LAMBDA ;
-	Function<String, String> REMOVE_VOWELS_LAMBDA;
-	Function<Integer, Integer> DOUBLE_LAMBDA;
-	BiFunction<Integer, Integer, Integer> PYTHAGOREAN_LAMBDA;
-	Function<Integer, String> EVEN_ODD_LAMBDA;
-	Function<Character, Integer> ASCII_LAMBDA;
-	Function<String, String> CAPITALIZE_LAMBDA;
-	Function<String, String> BLACKOUT_LAMBDA;
+	Function<Integer, Integer> INCREMENT_LAMBDA = x -> x + 1;
+	Function<String, String> REMOVE_VOWELS_LAMBDA = x -> x.replaceAll("[AEIOUaeiou]", "");
+	Function<Integer, Integer> DOUBLE_LAMBDA = x -> x * 2;
+	BiFunction<Integer, Integer, Integer> PYTHAGOREAN_LAMBDA = (sideA, sideB) -> (int)(Math.sqrt(((sideA*sideA) + (sideB*sideB))));
+	Function<Integer, String> EVEN_ODD_LAMBDA = x -> { if (x % 2 == 0) { return "even"; } else { return "odd"; } };
+	Function<Character, Integer> ASCII_LAMBDA = x -> Integer.valueOf(x.charValue());
+	Function<String, String> CAPITALIZE_LAMBDA = x -> Character.toUpperCase(x.charAt(0)) + x.substring(1);
+	Function<String, String> BLACKOUT_LAMBDA = x -> { if (x.equals("shit") || x.equals("motherfucker")) { return "#".repeat(x.length()); } return x; };
 	
 	@Test
 	void testIncrement() {
@@ -76,5 +76,6 @@ class _2_PracticeWritingLambdas {
 	void testBlackout() {
 		assertEquals("####", LambdaHelper.processString("shit", BLACKOUT_LAMBDA));
 		assertEquals("############", LambdaHelper.processString("motherfucker", BLACKOUT_LAMBDA));
+		assertEquals("hello", LambdaHelper.processString("hello", BLACKOUT_LAMBDA));	
 	}
 }
